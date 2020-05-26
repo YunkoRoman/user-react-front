@@ -1,0 +1,51 @@
+.bodyComponent {
+    padding: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+}
+
+.bodyComponent__restBox {
+    background-color: #ffffff;
+    width: 320px;
+    height: 250px;
+    border-radius: 20px;
+    transition: 0.5s;
+    margin-right: 25px;
+    overflow: hidden;
+}
+
+.bodyComponent__restBox:hover {
+    transform: scale(1.07)
+}
+
+.bodyComponent__restBox__img {
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+}
+
+.bodyComponent__restBox__body {
+    width: 100%;
+    height: 50%;
+
+}
+
+.bodyComponent__restBox__body__name {
+    display: block;
+    margin-top: 5px;
+    margin-left: 5px;
+    font-family: 'Times New Roman';
+    font-size: 200%;
+    color: #212121;
+}
+
+.bodyComponent__restBox__body__desc {
+    display: block;
+    margin-left: 5px;
+    margin-top: 5px;
+    font-family: 'Times New Roman';
+    font-size: 150%;
+    color: #212121;
+}
