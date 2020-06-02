@@ -32,8 +32,9 @@ export function authUser(email, password) {
                     dispatch(authIsSending(false))))
             .catch((err) => {
                 console.log(err.response);
-                dispatch(authIsErrored(true))
+                dispatch(authIsErrored(true));
                     dispatch(authIsSending(false))
             });
     }
 }
+

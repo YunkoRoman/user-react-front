@@ -15,7 +15,7 @@ class Body extends Component {
 
     renderRestaurants = ({id, name, description, path_to_img}) => {
         return (
-            <Link to={''} className={'bodyComponent__restBox shadow'} key={id}>
+            <Link to={`restaurant/${id}`} className={'bodyComponent__restBox shadow'} key={id}>
                 <div className={'bodyComponent__restBox__img'}>
                     <img src={path_to_img} alt="RestaurantPhoto"/>
                 </div>

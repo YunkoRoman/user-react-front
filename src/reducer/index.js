@@ -4,6 +4,7 @@ import {restListHasErrored, restListIsLoadig, result} from './restaurantsList'
 import {registerIsErrored, dataIsSending, registerIsSuccess} from './registrationRedux'
 import {authIsErrored, authIsSending, authIsSuccess} from './authRedux'
 import {errorUserCheck, successUserCheck} from './checkUserRedux'
+import {restProductsFetchDataSucces, restProductsHasErrored, restProductsIsLoading} from './restaurantProducts.redux'
 
 
 export default combineReducers({
@@ -18,5 +19,8 @@ export default combineReducers({
     authIsSending,
     authIsSuccess,
     errorUserCheck,
-    successUserCheck
+    successUserCheck,
+    restProductsFetchDataSucces,
+    restProductsHasErrored,
+    restProductsIsLoading
 });

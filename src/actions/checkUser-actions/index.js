@@ -25,6 +25,7 @@ export function checkUser(token) {
                 dispatch(successUserCheck(checkResult)
                 ))
             .catch((err) => {
+                dispatch(successUserCheck(false));
                 console.log(err.response);
                 dispatch(errorUserCheck(true))
             });

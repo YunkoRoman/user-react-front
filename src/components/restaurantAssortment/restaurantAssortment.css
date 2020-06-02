@@ -1,0 +1,88 @@
+.assort_box {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.assort_box__general {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.assort_box__menuName > p {
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: #252525;
+}
+
+.assort_box__menuName {
+    margin-left: 15px;
+}
+
+.assort_box__prodBox {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.assort_box__prodBox__frame {
+    margin: 15px;
+    width: 250px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.assort_box__prodBox__img {
+    width: 100%;
+    height: 65%;
+    background-color: red;
+}
+
+.assort_box__prodBox__product_name {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    line-height: 19px;
+    text-decoration: none;
+    color: #252525;
+    font-weight: 700;
+    display: inline;
+}
+
+.assort_box__prodBox__footer {
+    margin-top: 35px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.assort_box__prodBox__price {
+
+}
+
+.assort_box__prodBox__priceValue {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+}
+.assort_box__prodBox__valuta{
+    font-size: 18px;
+    font-weight: 700;
+    color: #000;
+}
+.assort_box__prodBox_btn{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    padding: 5px;
+    height: 28px;
+    border-radius: 5px;
+    color: #934c00;
+    background-color: #fc0;
+    border-color: #e6b800;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.7);
+}
+.assort_box__prodBox_btn:hover{
+    opacity: 0.8;
+}

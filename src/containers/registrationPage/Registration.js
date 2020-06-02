@@ -42,8 +42,8 @@ class Registration extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-
+const mapStateToProps = (state, ownProps) => {
+    console.log(ownProps);
     return {
         registerIsSuccess: state.registerIsSuccess,
         dataIsSending: state.dataIsSending,

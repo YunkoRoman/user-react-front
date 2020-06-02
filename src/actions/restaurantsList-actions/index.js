@@ -1,4 +1,4 @@
-import RestaurantService from '../../services/restaurantsList.service'
+import RestaurantService from '../../services/restaurant.service'
 import {
     RES_LISTS_ERRORED,
     RES_LISTS_FETCH_DATA_SUCCESS,

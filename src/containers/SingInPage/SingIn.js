@@ -16,7 +16,7 @@ class SingIn extends Component {
         if (this.props.authIsSuccess.data) {
             const data = this.props.authIsSuccess.data;
             localStorage.setItem('token', data.msg);
-            if (data.success === true) return <Redirect from={'/login'} to={'/'}/>
+            if (data.success) return <Redirect from={'/login'} to={'/'}/>
         }
         return (
             <div>
@@ -44,7 +44,6 @@ class SingIn extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         authIsSuccess: state.authIsSuccess,
         authIsSending: state.authIsSending,

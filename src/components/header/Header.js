@@ -2,8 +2,42 @@ import React from 'react';
 import {Link} from "react-router-dom";
 
 import './Header.css'
+import {connect} from "react-redux";
+import {checkUser} from "../../actions/checkUser-actions";
 
-const Header = () => {
+const Header = (props) => {
+    const token = localStorage.getItem('token');
+    props.checkUser(token);
+    const exit = () => {
+        localStorage.removeItem('token');
+        window.location.reload(false)
+    };
+
+    const AuthPanel = () => (
+        <div className={'user_panel_auth__box'}>
+
+            <Link to="/login" className={'user_panel_auth__box__enter'}>
+                Sign in
+            </Link>
+            <Link to="/registration"
+                  className={'user_panel_auth__box__registration'}>
+                Registration
+            </Link>
+        </div>
+    );
+
+    const UserPanel = () => (
+        <div className={'user_panel_auth__box'}>
+
+            <Link to="" className={'user__panel__reg_user'}>
+                <img src={process.env.PUBLIC_URL + '/userIcon.png'} alt=""/>
+            </Link>
+            <div className={'user_panel_auth__box__exit'}>
+                <span className={'user_panel_auth__box__exit__btn'}
+                      onClick={exit}>Exit</span>
+            </div>
+        </div>
+    );
 
 
     return (
@@ -14,32 +48,24 @@ const Header = () => {
 
                     </div>
                     <div className={'user_panel_auth'}>
-                        <div className={'user_panel_auth__box'}>
-                            <Link to="" className={'user_panel_auth__box__basket'}>
-                                <img src={process.env.PUBLIC_URL + '/basket_icon.png'} alt="Basket"/>
-                            </Link>
-                            <Link to="/login" className={'user_panel_auth__box__enter'}>
-                                Вхід
-                            </Link>
-                            <Link to="/registration"
-                                  className={'user_panel_auth__box__registration'}>
-                                Реєстрація
-                            </Link>
-                        </div>
+                        {props.successUserCheck.data ? <UserPanel/> : < AuthPanel/>}
+
                     </div>
                 </div>
                 <div className={'header_footer'}>
                     <div className={'head_logo'}>
-                        <a href={''}>Home Logo </a>
+                        <Link to={'/'}>Home Logo </Link>
                     </div>
                     <div className={'restaurant_address'}>
                         <span className={'restaurant_address__town'}> Town </span>
                         <span className={'restaurant_address__slash'}>/</span>
                         <span className={'restaurant_address__district'}>District </span>
-                        <Link to={'/navigate'} className={'restaurant_address__marker'}> <img  width={'22px'} src={process.env.PUBLIC_URL + '/icon-marker.png'} alt=""/></Link>
+                        <Link to={'/navigate'} className={'restaurant_address__marker'}> <img width={'22px'}
+                                                                                              src={process.env.PUBLIC_URL + '/icon-marker.png'}
+                                                                                              alt=""/></Link>
                     </div>
                     <div className={'search_box'}>
-                        <form className={'search_box__form'} >
+                        <form className={'search_box__form'}>
                             <input type="text" className="search_form__textbox" placeholder="Пошук закладу "/>
                             <button className="search_form__button">
                                 <img src={process.env.PUBLIC_URL + '/search_icon.png'}/>
@@ -53,5 +79,17 @@ const Header = () => {
     )
 
 };
+const mapStateToProps = (state) => {
+    return {
+        successUserCheck: state.successUserCheck,
 
-export default Header;
+    }
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        checkUser: (token) => dispatch(checkUser(token))
+    }
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)
