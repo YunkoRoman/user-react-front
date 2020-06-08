@@ -12,9 +12,15 @@ import SingIn from "../../containers/SingInPage/SingIn";
 import Restaurant from "../../containers/restautaurant"
 
 import './App.css';
+import {checkUser} from "../../actions/checkUser-actions";
 
 
-const App = ({store}) => {
+class App extends Component {
+    componentDidMount(){
+        const token = localStorage.getItem('token');
+        this.props.checkUser(token);
+    }
+    render() {
 
         return (
             <Switch>
@@ -33,8 +39,14 @@ const App = ({store}) => {
             </Switch>
         )
 
-    };
+    }
+}
 
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        checkUser: (token) => dispatch(checkUser(token))
+    }
+};
 
-export default App
+export default connect(null, mapDispatchToProps)(App)

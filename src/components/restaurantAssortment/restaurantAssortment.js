@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import './restaurantAssortment.css';
+import {baseUrlAdmin} from '../../constants/AppUrl'
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {restProductsFetchData} from "../../actions/restaurantProducts-action";
@@ -15,13 +16,15 @@ class restaurantAssortment extends Component {
 
     renderAssotment({id, name, products}) {
         const renderProducts = ({description, id, name, path, price}) => {
+            console.log(`${baseUrlAdmin}/${path}`)
             return (
                 <div key={id} className={'assort_box__prodBox__frame shadow'}>
                     <div className={'assort_box__prodBox__img'}>
-
+                        <img  className={'product_img'} src={`${baseUrlAdmin}/${path}`} alt=""/>
                     </div>
                     <div className={'assort_box__prodBox__descr'}>
                         <p className="assort_box__prodBox__product_name">{name}</p>
+                        <p className={'assort_box__prodBox__product_desc'}>{description}</p>
                         <div className="assort_box__prodBox__footer">
                             <div className="assort_box__prodBox__price">
                                 <span className="assort_box__prodBox__priceValue"> {price}</span>
