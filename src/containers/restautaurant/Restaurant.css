@@ -1,0 +1,10 @@
+.RestPage{
+    display: flex;
+    width: 100%;
+}
+.RestPage__assortment{
+    width: 70%;
+}
+.RestPage__basket{
+    width: 30%;
+}

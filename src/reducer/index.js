@@ -5,6 +5,7 @@ import {registerIsErrored, dataIsSending, registerIsSuccess} from './registratio
 import {authIsErrored, authIsSending, authIsSuccess} from './authRedux'
 import {errorUserCheck, successUserCheck} from './checkUserRedux'
 import {restProductsFetchDataSucces, restProductsHasErrored, restProductsIsLoading} from './restaurantProducts.redux'
+import {successAddProd} from './basketRedux'
 
 
 export default combineReducers({
@@ -22,5 +23,6 @@ export default combineReducers({
     successUserCheck,
     restProductsFetchDataSucces,
     restProductsHasErrored,
-    restProductsIsLoading
+    restProductsIsLoading,
+    successAddProd
 });
