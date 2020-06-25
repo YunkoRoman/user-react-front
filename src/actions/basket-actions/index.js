@@ -1,18 +1,16 @@
-import {ADD_PRODUCT} from '../../action-types/basket-actionTypes'
+import {ADD_PRODUCT, CHECK_LOCALSTORAGE} from '../../action-types/basket-actionTypes'
 
 
-export const successAddProd = (basket) => {
+export const addProduct = (id) => {
     return {
         type: ADD_PRODUCT,
-        basket
+        id
     }
 };
 
-export function addProduct(product) {
-    const basket = localStorage.getItem('basket')
-    console.log(basket);
-    console.log(product);
-    return (dispatch) => {
-
+export const checkLocalStorage = (restaurant_id) => {
+    return{
+        type: CHECK_LOCALSTORAGE,
+        restaurant_id
     }
 }

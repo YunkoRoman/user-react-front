@@ -2,7 +2,7 @@ import RestaurantService from '../../services/restaurant.service'
 import {
     RES_PRODUCTS_ERRORED,
     RES_PRODUCTS_FETCH_DATA_SUCCESS,
-    RES_PRODUCTS_IS_LOADING
+    RES_PRODUCTS_IS_LOADING,
 } from '../../action-types/restaurantProducts-actionTypes'
 
 export const restProductsHasErrored = (bool) => {

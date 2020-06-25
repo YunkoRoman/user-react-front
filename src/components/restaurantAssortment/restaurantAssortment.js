@@ -5,22 +5,25 @@ import {baseUrlAdmin} from '../../constants/AppUrl'
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {restProductsFetchData} from "../../actions/restaurantProducts-action";
+import {addProduct, checkLocalStorage} from "../../actions/basket-actions";
 
 
 class restaurantAssortment extends Component {
     componentDidMount() {
         const {restId} = this.props.match.params;
-        this.props.fetchProducts(restId)
+        this.props. fetchProducts(restId);
+        this.props.checkLocalStorage(restId)
     }
 
 
-    renderAssotment({id, name, products}) {
+
+    renderMenu({id, name, products}) {
+
         const renderProducts = ({description, id, name, path, price}) => {
-            console.log(`${baseUrlAdmin}/${path}`)
             return (
                 <div key={id} className={'assort_box__prodBox__frame shadow'}>
                     <div className={'assort_box__prodBox__img'}>
-                        <img  className={'product_img'} src={`${baseUrlAdmin}/${path}`} alt=""/>
+                        <img className={'product_img'} src={`${baseUrlAdmin}/${path}`} alt=""/>
                     </div>
                     <div className={'assort_box__prodBox__descr'}>
                         <p className="assort_box__prodBox__product_name">{name}</p>
@@ -30,7 +33,9 @@ class restaurantAssortment extends Component {
                                 <span className="assort_box__prodBox__priceValue"> {price}</span>
                                 <span className="assort_box__prodBox__valuta"> грн </span>
                             </div>
-                            <button className="assort_box__prodBox_btn">Add to card</button>
+                            <button className="assort_box__prodBox_btn" onClick={()=> this.props.addProduct(id)}>
+                                Add to card
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -39,13 +44,14 @@ class restaurantAssortment extends Component {
         };
 
         return (
+
             <div key={id} className={'assort_box'}>
                 <div className={'assort_box__general'}>
                     <div className={'assort_box__menuName'}>
                         <p>{name}</p>
                     </div>
                     <div className={'assort_box__prodBox'}>
-                        {products.map(renderProducts)}
+                        {products.map(renderProducts, this)}
                     </div>
                 </div>
             </div>
@@ -54,14 +60,14 @@ class restaurantAssortment extends Component {
 
 
     render() {
-        console.log(this.props);
         const {result} = this.props;
-        const {data} = result;
-        if (data !== undefined) {
-            const {msg} = data;
+        const {menu} = result;
+
+        if (menu !== undefined) {
+            const {msg} = menu;
             return (
                 <div className={'bodyComponent'}>
-                    {msg.map(this.renderAssotment)}
+                    {msg.map(this.renderMenu, this)}
                 </div>
             )
         }
@@ -72,7 +78,7 @@ class restaurantAssortment extends Component {
                 </div>
             )
         }
-        return(
+        return (
             <div>
 
             </div>
@@ -82,7 +88,6 @@ class restaurantAssortment extends Component {
 
 
 const mapStateToProps = (state) => {
-
     return {
         restProductsHasErrored: state.restProductsHasErrored,
         restProductsIsLoading: state.restProductsIsLoading,
@@ -92,7 +97,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchProducts: (restId) => dispatch(restProductsFetchData(restId))
+        fetchProducts: (restId) => dispatch(restProductsFetchData(restId)),
+        addProduct: (prodId) => dispatch(addProduct(prodId)),
+        checkLocalStorage: (restId) => dispatch (checkLocalStorage(restId))
     }
 };
 const WithUrlDataContainerComponent = withRouter(restaurantAssortment);

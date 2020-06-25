@@ -8,7 +8,6 @@ import {checkUser} from "../../actions/checkUser-actions";
 class Header extends Component {
 
 componentDidMount(){
-    console.log(1);
     const token = localStorage.getItem('token');
     this.props.checkUser(token);
 
