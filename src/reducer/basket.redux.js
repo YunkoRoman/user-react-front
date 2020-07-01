@@ -20,7 +20,7 @@ export const checkLocalStorage = (state = [], action) => {
         default:
             return state
     }
-}
+};
 
 
 export const basketReducer = (state = initialState, action) => {
@@ -34,27 +34,23 @@ export const basketReducer = (state = initialState, action) => {
             let existed_prod = basketProd.find(prod => prod.id === prodId);
             if (existed_prod !== undefined) {
                 addedProd.qtt += 1;
-                initialState.total += addedProd.price;
-                return {
+                addedProd.totalPrice = addedProd.price * addedProd.qtt;
+                state = {
                     ...state,
+                    basketProd: [...state.basketProd],
                     total: state.total + addedProd.price
                 }
             } else {
                 addedProd.qtt = 1;
-                const newTotal = state.total + addedProd.price;
-
-                basketProd.push(addedProd);
-                state.total = newTotal;
-
-                return {
+                addedProd.totalPrice = addedProd.price;
+                state = {
                     ...state,
-                    addedProd: [...basketProd, addedProd],
-                    total: newTotal
-                };
-
+                    basketProd: [...state.basketProd, addedProd],
+                    total: state.total + addedProd.price
+                }
             }
 
-        default :
-            return state
+
     }
+    return state
 }

@@ -1,6 +1,5 @@
 .Basket {
     width: 300px;
-    min-height: 500px;
     border-radius: 10px;
 }
 
@@ -12,14 +11,9 @@
 .Basket__body {
     margin-top: 15px;
     width: 100%;
-    height: 25px;
 
 }
-.Basket__body__frame{
-    border-bottom: 1px solid black;
-    margin-left: 10px;
-    margin-right: 10px;
-}
+
 
 .Basket__body__product__qtt {
     display: block;
@@ -32,19 +26,36 @@
 
 .Basket__body__product__value {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.Basket__body__product__value__box{
     width: 100%;
     margin: 0 5px 0 5px ;
-}
 
+}
 .Basket__body__product {
 
 }
-
+.Basket__body__product__qtt{
+    display: flex;
+}
 .Basket__body__product__editPanel {
     width: 100%;
     display: flex;
-    justify-content: space-between;
     margin-top: 10px;
     margin-bottom: 10px;
 }
+.Basket__body__product__price{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.Basket__body__product__price__currency{
+    margin-left: 5px;
+}
+.frame{
+    border-bottom: 1px dotted black;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
