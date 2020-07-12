@@ -1,5 +1,6 @@
 export default {
     products:[],
     basketProd:[],
-    total: 0
+    total: 0,
+    sticky: false
 }

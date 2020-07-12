@@ -7,3 +7,13 @@
 a {text-decoration: none;}
 
 
+.sticky {
+  right: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.stickyPadding {
+  transition-duration: 1s;
+  padding-top: 149px;
+}
