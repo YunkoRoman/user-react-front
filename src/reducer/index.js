@@ -7,6 +7,7 @@ import {errorUserCheck, successUserCheck} from './checkUserRedux'
 import {restProductsFetchDataSucces, restProductsHasErrored, restProductsIsLoading} from './restaurantProducts.redux'
 import {basketReducer, checkLocalStorage,} from './basket.redux'
 import {fetchRestInfoDataSucces, fetchRestInfosHasErrored} from './restaurantInfo.redux'
+import {modalPageReducer} from './modalPage.redux'
 
 
 export default combineReducers({
@@ -28,5 +29,6 @@ export default combineReducers({
     basketReducer,
     checkLocalStorage,
     fetchRestInfoDataSucces,
-    fetchRestInfosHasErrored
+    fetchRestInfosHasErrored,
+    modalPageReducer
 });

@@ -1,0 +1,1 @@
+export const STATE_MODAL_PAGE = 'STATE_MODAL_PAGE';

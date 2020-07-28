@@ -1,27 +1,54 @@
-import React, {Component}  from 'react';
+import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-
 import './Header.css'
 import {connect} from "react-redux";
 import {checkUser} from "../../actions/checkUser-actions";
 
 class Header extends Component {
 
-componentDidMount(){
-    const token = localStorage.getItem('token');
-    this.props.checkUser(token);
+    constructor(props) {
+        super(props);
+        this.filterList = this.filterList.bind(this);
+        this.state = {
+            foundRest: []
+        }
+    }
 
-}
+    componentDidMount() {
+
+
+        const token = localStorage.getItem('token');
+        this.props.checkUser(token);
+
+    }
+
+
     exit = () => {
         localStorage.removeItem('token');
         window.location.reload(false)
     };
 
+    filterList(event) {
+        let restList = this.props.restList.msg;
+        restList = restList.filter((item) => {
+            return item.name.toLowerCase().search(
+                event.target.value.toLowerCase()) !== -1;
+        });
+        event.target.value !== '' ? this.setState({foundRest: restList}) : this.setState({foundRest: []});
+    }
 
-
-
+    renderFoundList({name, id}) {
+        return (
+            <div className={'foundList__box'} key={id}>
+                <Link to={`/restaurant/${id}`}>
+                    <div>{name}</div>
+                </Link>
+            </div>
+        )
+    }
 
     render() {
+        const foundRest = this.state.foundRest;
         const AuthPanel = () => (
             <div className={'user_panel_auth__box'}>
 
@@ -34,15 +61,15 @@ componentDidMount(){
                 </Link>
             </div>
         );
-        const  UserPanel = () => (
+        const UserPanel = () => (
             <div className={'user_panel_auth__box'}>
 
                 <Link to="" className={'user__panel__reg_user'}>
                     <img src={process.env.PUBLIC_URL + '/userIcon.png'} alt=""/>
                 </Link>
                 <div className={'user_panel_auth__box__exit'}>
-                <span className={'user_panel_auth__box__exit__btn'}
-                      onClick={this.exit}>Exit</span>
+        <span className={'user_panel_auth__box__exit__btn'}
+              onClick={this.exit}>Exit</span>
                 </div>
             </div>
         );
@@ -74,11 +101,13 @@ componentDidMount(){
                         </div>
                         <div className={'search_box'}>
                             <form className={'search_box__form'}>
-                                <input type="text" className="search_form__textbox" placeholder="Пошук закладу "/>
+                                <input type="text" className="search_form__textbox" placeholder="Пошук закладу "
+                                       onChange={this.filterList}/>
                                 <button className="search_form__button">
                                     <img src={process.env.PUBLIC_URL + '/search_icon.png'}/>
                                 </button>
                             </form>
+                            <div>{foundRest.map(this.renderFoundList)}</div>
                         </div>
                     </div>
                 </header>
@@ -91,6 +120,7 @@ componentDidMount(){
 const mapStateToProps = (state) => {
     return {
         successUserCheck: state.successUserCheck,
+        restList: state.result.data
 
     }
 };
